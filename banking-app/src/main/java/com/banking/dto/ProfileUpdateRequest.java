@@ -1,0 +1,10 @@
+package com.banking.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+public record ProfileUpdateRequest(
+        @Email @NotBlank String email,
+        @NotBlank String phone
+) {
+}
