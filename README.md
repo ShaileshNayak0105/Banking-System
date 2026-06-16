@@ -10,10 +10,9 @@ A basic full-stack virtual banking system built with Spring Boot, PostgreSQL, an
 | --- | --- |
 | Backend | Java 17, Spring Boot 3, Spring Security, Spring Data JPA |
 | Database | PostgreSQL 15 |
-| Frontend | React 18, Vite, Tailwind CSS, Axios |
+| Frontend | React 18, Tailwind CSS |
 | Security | JWT, BCrypt |
-| Export | iText PDF, OpenCSV |
-| Email | JavaMailSender SMTP |
+| Export | OpenCSV |
 | DevOps | Docker, Docker Compose |
 
 ## Features
@@ -35,32 +34,6 @@ Admin:
 
 Note: New customer accounts start with a demo opening balance of 1000 so transfers can be tested immediately.
 
-## Project Structure
-
-```text
-banking-app/
-├── src/
-│   └── main/
-│       ├── java/com/banking/
-│       │   ├── controller/
-│       │   ├── service/
-│       │   ├── entity/
-│       │   ├── repository/
-│       │   ├── dto/
-│       │   ├── security/
-│       │   └── exception/
-│       └── resources/
-│           └── application.properties
-├── frontend/
-│   ├── src/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   └── api/
-│   └── package.json
-├── Dockerfile
-├── docker-compose.yml
-└── README.md
-```
 
 ## Database Tables
 
@@ -212,24 +185,4 @@ The backend reads sensitive values from environment variables, and the Docker co
 | PUT | `/api/admin/account/{accountNumber}/unblock` | Unblock account | ADMIN |
 | GET | `/api/admin/audit-logs` | View audit logs | ADMIN |
 
-## Interview Talking Points
 
-| Feature | Talking Point |
-| --- | --- |
-| BCrypt password encryption | Plain-text passwords are never stored |
-| JWT stateless auth | Server does not need sessions |
-| `@Transactional` transfer | Debit and credit succeed or roll back together |
-| `@PreAuthorize` admin routes | Admin APIs are protected by role |
-| `@ControllerAdvice` | Validation and runtime errors are handled centrally |
-| Audit logs | Sensitive actions are logged with user ID and timestamp |
-| PDF/CSV export | Users can download their statements |
-| Input validation | Backend validates all request DTOs |
-
-## Simple Testing Flow
-
-1. Register two users.
-2. Login as the first user.
-3. Add the second user's account number as a beneficiary.
-4. Transfer a small amount.
-5. Check transaction history and mini statement.
-6. Export the statement as CSV or PDF.
